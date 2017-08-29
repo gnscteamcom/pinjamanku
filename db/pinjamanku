@@ -1,0 +1,276 @@
+-- phpMyAdmin SQL Dump
+-- version 4.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: 01 Agu 2017 pada 21.48
+-- Versi Server: 10.1.16-MariaDB
+-- PHP Version: 7.0.9
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `pinjamanku`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `admin`
+--
+
+CREATE TABLE `admin` (
+  `id_admin` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `nama_lengkap` varchar(100) NOT NULL,
+  `jns_kel` enum('Laki-laki','Perempuan') NOT NULL,
+  `alamat` text NOT NULL,
+  `level` enum('Admin','Operator','Author') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `admin`
+--
+
+INSERT INTO `admin` (`id_admin`, `username`, `email`, `password`, `nama_lengkap`, `jns_kel`, `alamat`, `level`) VALUES
+(1, 'admin', 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'admin website', 'Laki-laki', 'Jl. Curug Raya', 'Admin');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `agunan`
+--
+
+CREATE TABLE `agunan` (
+  `id_agunan` int(11) NOT NULL,
+  `jenis` varchar(50) NOT NULL,
+  `judul` varchar(50) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `gambar` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `agunan`
+--
+
+INSERT INTO `agunan` (`id_agunan`, `jenis`, `judul`, `deskripsi`, `gambar`) VALUES
+(1, 'Mobil', 'Pinjaman Gadai Jaminan BPKB Mobil', 'Pinjaman Jaminan BPKB Mobil atau Gadai BPKB Mobil adalah solusi pinjaman dana tunai berlimit besar hingga ratusan juta rupiah. Gunakan Kredit multiguna jaminan BPKB Mobil sebagai solusi pendanaan anda.', 'mobil.png'),
+(2, 'Motor', 'Pinjaman Gadai Jaminan BPKB Motor', 'Pinjaman Jaminan BPKB Motor atau Gadai BPKB Motor adalah pinjaman dana tunai hingga 80% dari harga motor yang dijaminkan. Gunakan Kredit Multiguna jaminan BPKB Motor sebagai solusi pendanaan anda.', 'motor.png'),
+(3, 'Properti', 'Pinjaman Gadai Jaminan Sertifikat Rumah', 'Pinjaman Jaminan Sertifikat Rumah atau Gadai Sertifikat Rumah adalah solusi pinjaman dana tunai berlimit besar hingga milliaran juta rupiah. Gunakan Kredit multiguna jaminan sertifikat rumah sebagai solusi pendanaan anda.', 'properti.png'),
+(4, 'Deposito', 'Kredit Multiguna dengan jenis agunan Deposito', 'Butuh dana pinjaman cepat, bunga rendah, atau berlimit besar hingga miliaran rupiah? Gunakan saja Kredit Multiguna beragunan BPKB Mobil, surat rumah atau tanah sebagai solusi pendanaan berbagai kebutuhan Anda.', 'deposito.png'),
+(5, 'SK Kerja', 'Kredit Multiguna dengan jenis agunan SK Kerja', 'Butuh dana pinjaman cepat, bunga rendah, atau berlimit besar hingga miliaran rupiah? Gunakan saja Kredit Multiguna beragunan BPKB Mobil, surat rumah atau tanah sebagai solusi pendanaan berbagai kebutuhan Anda.', 'sk-kerja.png'),
+(6, 'Device', 'Pinjaman Gadai Jaminan Device', 'Pinjaman Jaminan Device atau Gadai Device adalah solusi pinjaman dana tunai berlimit besar juta rupiah. Gunakan Kredit multiguna jaminan Device sebagai solusi pendanaan anda.', 'laptop.png');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `anggota`
+--
+
+CREATE TABLE `anggota` (
+  `id_anggota` int(11) NOT NULL,
+  `nm_depan` varchar(50) NOT NULL,
+  `nm_blkg` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `no_telp` varchar(50) NOT NULL,
+  `no_telp_lain` varchar(50) NOT NULL,
+  `provinsi` enum('Aceh','Bali','Banten','Bengkulu','DI Yogyakarta','DKI Jakarta','Gorontalo','Jambi','Jawa Barat','Jawa Tengah','Jawa Timur','Kalimantan Barat','Kalimantan Selatan','Kalimantan Selatan','Kalimantan Timur','Kalimantan Utara','Kepulauan Bangka Belitung','Kepulauan Riau','Lampung','Maluku','Maluku Utara','Nusa Tenggara Barat','Nusa Tenggara Timur','Papua','Papua Barat','Riau','Sulawesi Barat','Sulawesi Selatan','Sulawesi Tengah','Sulawesi Tenggara','Sulawesi Utara','Sumatera Barat','Sumatera Selatan','Sumatera Utara') NOT NULL,
+  `kota` varchar(50) NOT NULL,
+  `alamat` text NOT NULL,
+  `jns_kel` enum('Laki-laki','Perempuan') NOT NULL,
+  `pass` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `anggota`
+--
+
+INSERT INTO `anggota` (`id_anggota`, `nm_depan`, `nm_blkg`, `email`, `no_telp`, `no_telp_lain`, `provinsi`, `kota`, `alamat`, `jns_kel`, `pass`) VALUES
+(17, 'user', 'name', 'user@gmail.com', '255565496596', '0215474787', 'DKI Jakarta', 'Jatinegara', 'Jl. Kalimalang', 'Laki-laki', 'ee11cbb19052e40b07aac0ca060c23ee');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `artikel`
+--
+
+CREATE TABLE `artikel` (
+  `id_artikel` int(11) NOT NULL,
+  `judul` varchar(225) NOT NULL,
+  `isi` text NOT NULL,
+  `deskripsi` text NOT NULL,
+  `gambar` varchar(100) NOT NULL,
+  `waktu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `artikel`
+--
+
+INSERT INTO `artikel` (`id_artikel`, `judul`, `isi`, `deskripsi`, `gambar`, `waktu`) VALUES
+(1, 'Tidak Perlu Jenius untuk Memaksimalkan Hasil Saldo lagi', 'Dulu tingkat kecerdasan intelektual (Intelligence Quotient) di atas rata-rata atau kejeniusan sering dianggap sebagai salah satu faktor penentu kesuksesan seseorang dalam memaksimalkan saldo yang dimiliki. Namun kini, seseorang tak perlu jenius. Apalagi, kecerdasan finansial (Financial Quotient) pun telah diramu sedemikian rupa menjadi sebuah platform seiring dengan kemajuan teknologi. Perpaduan platform teknologi dengan fitur keuangan makin memudahkan seseorang untuk memaksimalkan hasil saldo.\r\n\r\nPertanyaan selanjutnya tentu saja sejauh mana platform yang ada mampu menjadi pemecah masalah keterbatasan masyarakat yang ingin memaksimalkan hasil saldo. Dalam konteks ini, inovasi perusahaan jasa keuangan yang terus sejalan dengan perkembangan teknologi informasi (IT) menjadi sebuah keniscayaan, juga jika tidak ingin tertinggal dan tergerus kinerja.', 'IPOTPAY hadir dengan terobosan dan inovasi teknologinya yang lebih cepat, nyaman, dan aman.', 'angsuran-pinjaman.jpg', '2017-07-11 03:00:41'),
+(2, 'Hal-hal yang Pantang Dilakukan Selama Liburan jika Ingin Sukses', 'Berlibur telah menjadi kebutuhan bagi orang-orang yang bekerja, hal ini bahkan seolah telah menjadi gaya hidup kebanyakan orang selama beberapa tahun belakangan ini. Berbagai pekerjaan dan rutinitas yang padat sepanjang waktu, tentu akan membuat kejenuhan tersendiri, sehingga penting untuk rehat sejenak dan menikmati hari yang berbeda dari biasanya. Lalu, sudah siapkah Anda untuk menikmati masa liburan itu sendiri?', 'Meski liburan membawa efek yang sangat positif bagi kehidupan orang-orang sibuk, namun hal ini tetap saja menjadi hal yang sulit untuk direalisasikan.', 'angsuran-pinjaman.jpg', '2017-06-23 13:12:36'),
+(3, 'Hal-hal yang Pantang Dilakukan Selama Liburan jika Ingin Sukses', 'Berlibur telah menjadi kebutuhan bagi orang-orang yang bekerja, hal ini bahkan seolah telah menjadi gaya hidup kebanyakan orang selama beberapa tahun belakangan ini. Berbagai pekerjaan dan rutinitas yang padat sepanjang waktu, tentu akan membuat kejenuhan tersendiri, sehingga penting untuk rehat sejenak dan menikmati hari yang berbeda dari biasanya. Lalu, sudah siapkah Anda untuk menikmati masa liburan itu sendiri?', 'Meski liburan membawa efek yang sangat positif bagi kehidupan orang-orang sibuk, namun hal ini tetap saja menjadi hal yang sulit untuk direalisasikan.', 'angsuran-pinjaman.jpg', '2017-06-23 14:28:25');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pesan`
+--
+
+CREATE TABLE `pesan` (
+  `id_pesan` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `isi_pesan` text NOT NULL,
+  `waktu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `pesan`
+--
+
+INSERT INTO `pesan` (`id_pesan`, `nama`, `email`, `isi_pesan`, `waktu`) VALUES
+(1, 'Putra Idaman', 'idaman@gmail.com', 'fdthdtgr', '0000-00-00 00:00:00'),
+(5, 'srtrdtr', 'dsfrds@sdfdf.com', 'dgftyuyjytutyu', '2017-06-24 05:18:53'),
+(6, 'username', 'anggotadua@gmail.com', 'dfsb ntg', '2017-06-24 05:27:00'),
+(7, 'Putra Idaman', 'putra@gmail.com', 'sfsdfdsf', '2017-07-10 08:43:17');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pinjaman`
+--
+
+CREATE TABLE `pinjaman` (
+  `id_pinjaman` int(11) NOT NULL,
+  `id_agt` int(11) NOT NULL,
+  `jml_pinjaman` varchar(50) NOT NULL,
+  `agunan` varchar(50) NOT NULL,
+  `tenor` enum('6 Bulan','12 Bulan','24 Bulan','36 Bulan','48 Bulan','60 Bulan','72 Bulan','84 Bulan') NOT NULL,
+  `tipe_pek` enum('Pegawai Swasta','Wiraswasta','Profesional','Ibu Rumah Tangga','Pegawai Negeri Sipil','TNI atau POLRI') NOT NULL,
+  `thn_bek` varchar(10) NOT NULL,
+  `stts_pek` enum('Paruh Waktu','Kontrak','Tetap/Permanen','Lain-lain') NOT NULL,
+  `penghasilan` varchar(20) NOT NULL,
+  `waktu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `pinjaman`
+--
+
+INSERT INTO `pinjaman` (`id_pinjaman`, `id_agt`, `jml_pinjaman`, `agunan`, `tenor`, `tipe_pek`, `thn_bek`, `stts_pek`, `penghasilan`, `waktu`) VALUES
+(18, 17, '5000000', 'Properti', '12 Bulan', 'Pegawai Swasta', '2005', 'Paruh Waktu', '2000000', '2017-08-01 19:46:47');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trans_pinjaman`
+--
+
+CREATE TABLE `trans_pinjaman` (
+  `id_trans` int(11) NOT NULL,
+  `id_pinjaman` int(11) NOT NULL,
+  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `jumlah` varchar(50) NOT NULL,
+  `tenor_ke` varchar(50) NOT NULL,
+  `denda` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id_admin`);
+
+--
+-- Indexes for table `agunan`
+--
+ALTER TABLE `agunan`
+  ADD PRIMARY KEY (`id_agunan`);
+
+--
+-- Indexes for table `anggota`
+--
+ALTER TABLE `anggota`
+  ADD PRIMARY KEY (`id_anggota`);
+
+--
+-- Indexes for table `artikel`
+--
+ALTER TABLE `artikel`
+  ADD PRIMARY KEY (`id_artikel`);
+
+--
+-- Indexes for table `pesan`
+--
+ALTER TABLE `pesan`
+  ADD PRIMARY KEY (`id_pesan`);
+
+--
+-- Indexes for table `pinjaman`
+--
+ALTER TABLE `pinjaman`
+  ADD PRIMARY KEY (`id_pinjaman`);
+
+--
+-- Indexes for table `trans_pinjaman`
+--
+ALTER TABLE `trans_pinjaman`
+  ADD PRIMARY KEY (`id_trans`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT for table `agunan`
+--
+ALTER TABLE `agunan`
+  MODIFY `id_agunan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `anggota`
+--
+ALTER TABLE `anggota`
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `artikel`
+--
+ALTER TABLE `artikel`
+  MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `pesan`
+--
+ALTER TABLE `pesan`
+  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `pinjaman`
+--
+ALTER TABLE `pinjaman`
+  MODIFY `id_pinjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+--
+-- AUTO_INCREMENT for table `trans_pinjaman`
+--
+ALTER TABLE `trans_pinjaman`
+  MODIFY `id_trans` int(11) NOT NULL AUTO_INCREMENT;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
